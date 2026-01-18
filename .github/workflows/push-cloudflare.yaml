@@ -49,7 +49,7 @@ jobs:
               with:
                   apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
                   accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-                  postCommands: |
+                  preCommands: |
                     wrangler d1 execute vault1 --remote --file=sql/schema.sql
                     wrangler secret put JWT_SECRET --value ${{ secrets.JWT_SECRET }}
                     wrangler secret put JWT_REFRESH_SECRET --value ${{ secrets.JWT_REFRESH_SECRET }}
