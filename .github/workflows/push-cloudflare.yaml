@@ -39,7 +39,7 @@ jobs:
                 key: build-cache-${{ runner.os }}-${{ hashFiles('**/Cargo.toml') }}
                 restore-keys: |
                   build-cache-${{ runner.os }}-
-                  
+
             - run: rustup target add wasm32-unknown-unknown
             - name: Install lld
               run: sudo apt install -y lld clang gcc llvm
@@ -54,7 +54,7 @@ jobs:
                   cargo install worker-build
                 fi
 
-            - uses: cloudflare/wrangler-action@4
+            - uses: cloudflare/wrangler-action@v3
               id: cf
               env:
                   D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
