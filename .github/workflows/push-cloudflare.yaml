@@ -43,8 +43,8 @@ jobs:
             - name: Install lld
               run: sudo apt install -y lld clang gcc llvm
 
-            - name: Replace D1_DATABASE_ID in wrangler.jsonc
-              run: sed -i "s/\${D1_DATABASE_ID}/${{ secrets.D1_DATABASE_ID }}/g" wrangler.jsonc
+            - name: Replace D1_DATABASE_ID in wrangler.toml
+              run: sed -i "s/\${D1_DATABASE_ID}/${{ secrets.D1_DATABASE_ID }}/g" wrangler.toml
 
             - name: Build Rust Worker (produce build/index.js)
               run: |
