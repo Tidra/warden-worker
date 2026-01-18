@@ -9,3 +9,9 @@ command = "cargo install -q worker-build && worker-build --release"
 binding = "warden-db"
 database_name = "warden-db"
 database_id = "${D1_DATABASE_ID}"
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
