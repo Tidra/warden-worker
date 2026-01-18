@@ -37,7 +37,7 @@ cd warden-worker
 在 Cloudflare 上创建一个新的 D1 数据库：
 
 ```bash
-wrangler d1 create vault1
+wrangler d1 create warden-db
 ```
 
 执行成功后，控制台会输出 `database_id`。
@@ -49,7 +49,7 @@ wrangler d1 create vault1
 ```jsonc
   "d1_databases": [
     {
-      "binding": "vault1",
+      "binding": "warden-db",
       "database_id": "你的_DATABASE_ID"
     }
   ],
@@ -61,7 +61,7 @@ wrangler d1 create vault1
 
 ```bash
 # 初始化远程数据库（用于生产环境）
-wrangler d1 execute vault1 --remote --file=sql/schema.sql
+wrangler d1 execute warden-db --remote --file=sql/schema.sql
 ```
 
 ### 5. 设置环境变量
@@ -107,7 +107,7 @@ wrangler deploy
 
 1. **初始化本地数据库**：
    ```bash
-   wrangler d1 execute vault1 --local --file=sql/schema.sql
+   wrangler d1 execute warden-db --local --file=sql/schema.sql
    ```
 
 2. **配置本地环境变量**：

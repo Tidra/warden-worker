@@ -6,5 +6,6 @@ compatibility_date = "2025-09-19"
 command = "cargo install -q worker-build && worker-build --release"
 
 [[d1_databases]]
-binding = "vault1"
+binding = "warden-db"
+database_name = "warden-db"
 database_id = "${D1_DATABASE_ID}"

@@ -44,13 +44,17 @@ jobs:
 
             - uses: cloudflare/wrangler-action@v3
               id: cf
-              env:
-                  D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
               with:
                   apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
                   accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                  secrets: |
+                    JWT_SECRET
+                    JWT_REFRESH_SECRET
+                    ALLOWED_EMAILS
                   preCommands: |
-                    wrangler d1 execute vault1 --remote --file=sql/schema.sql
-                    wrangler secret put JWT_SECRET --value ${{ secrets.JWT_SECRET }}
-                    wrangler secret put JWT_REFRESH_SECRET --value ${{ secrets.JWT_REFRESH_SECRET }}
-                    wrangler secret put ALLOWED_EMAILS --value ${{ secrets.ALLOWED_EMAILS }}
+                    wrangler d1 execute warden-db --remote --file=sql/schema.sql
+              env:
+                  D1_DATABASE_ID: ${{ secrets.D1_DATABASE_ID }}
+                  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+                  JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+                  ALLOWED_EMAILS: ${{ secrets.ALLOWED_EMAILS }}
