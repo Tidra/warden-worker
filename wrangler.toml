@@ -7,5 +7,4 @@ command = "cargo install -q worker-build && worker-build --release"
 
 [[d1_databases]]
 binding = "vault1"
-// database_name = "vault1"
 database_id = "${D1_DATABASE_ID}"
